@@ -1,14 +1,11 @@
 import { useEffect } from "react";
-import type { PostType } from "@/data/types";
 import Post from "./post";
 import { fetchPosts } from "@/data/api";
+import { useStore } from "@nanostores/react";
+import { $posts, setPosts } from "@/lib/store";
 
-type PostsActionsProps = {
-  posts: PostType[];
-  setPosts: React.Dispatch<React.SetStateAction<PostType[]>>;
-};
-
-const Posts = ({ posts, setPosts }: PostsActionsProps) => {
+const Posts = () => {
+  const posts = useStore($posts);
   useEffect(() => {
     fetchPosts().then((data) => setPosts(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -19,7 +16,7 @@ const Posts = ({ posts, setPosts }: PostsActionsProps) => {
       {posts
         .sort((a, b) => (a.date > b.date ? -1 : 1))
         .map((post) => (
-          <Post key={post.id} post={post} setPosts={setPosts} />
+          <Post key={post.id} post={post} />
         ))}
     </div>
   );

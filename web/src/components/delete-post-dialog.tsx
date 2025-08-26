@@ -13,18 +13,16 @@ import { Button } from "@/components/ui/button";
 import { TrashIcon } from "@radix-ui/react-icons";
 import type { PostType } from "@/data/types";
 import { deletePost } from "@/data/api";
+import { removePost } from "@/lib/store";
 
 type DeletePostDialogProps = {
   post: PostType;
-  setPosts: React.Dispatch<React.SetStateAction<PostType[]>>;
 };
 
-const DeletePostDialog = ({ post, setPosts }: DeletePostDialogProps) => {
+const DeletePostDialog = ({ post }: DeletePostDialogProps) => {
   const handleDelete = async () => {
     await deletePost(post.id);
-    setPosts((prevPosts: PostType[]) =>
-      prevPosts.filter((p: PostType) => p.id !== post.id),
-    );
+    removePost(post.id);
   };
 
   return (
