@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { PostType } from "@/data/types";
-import db from "@/data/db.json";
 import Post from "./post";
+import { fetchPosts } from "@/data/api";
 
 const Posts = () => {
-  const [posts] = useState<PostType[]>(db.posts);
+  const [posts, setPosts] = useState<PostType[]>([]);
+
+   useEffect(() => {
+     fetchPosts().then((data) => setPosts(data));
+   }, []);
 
   return (
     <div>
