@@ -1,5 +1,7 @@
 import type { PostType } from "@/data/types";
 import PostActions from "./post-actions";
+import EditPost from "./edit-post";
+import { useState } from "react";
 
 type PostProps = {
   post: PostType;
@@ -7,6 +9,14 @@ type PostProps = {
 };
 
 const Post = ({ post, setPosts }: PostProps) => {
+  const [isEditing, setIsEditing] = useState(false);
+
+  if (isEditing) {
+    return (
+      <EditPost post={post} setPosts={setPosts} setIsEditing={setIsEditing} />
+    );
+  }
+
   return (
     <div className="p-1 border-b">
       <div className="flex items-center justify-between pl-4">
@@ -19,7 +29,11 @@ const Post = ({ post, setPosts }: PostProps) => {
             minute: "numeric",
           })}
         </div>
-        <PostActions post={post} setPosts={setPosts} />
+        <PostActions
+          post={post}
+          setPosts={setPosts}
+          setIsEditing={setIsEditing}
+        />
       </div>
       <p className="p-4">{post.content}</p>
     </div>
