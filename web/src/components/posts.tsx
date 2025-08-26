@@ -6,9 +6,9 @@ import { fetchPosts } from "@/data/api";
 const Posts = () => {
   const [posts, setPosts] = useState<PostType[]>([]);
 
-   useEffect(() => {
-     fetchPosts().then((data) => setPosts(data));
-   }, []);
+  useEffect(() => {
+    fetchPosts().then((data) => setPosts(data));
+  }, []);
 
   return (
     <div>
