@@ -25,3 +25,9 @@ export function updatePostContent(id: string, content: string) {
     }),
   );
 }
+
+export const $showAddPost = atom<boolean>(false);
+
+export function setShowAddPost(showAddPost: boolean) {
+  $showAddPost.set(showAddPost);
+}

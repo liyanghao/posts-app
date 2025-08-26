@@ -4,12 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { createPost } from "@/data/api";
 import { addPost } from "@/lib/store";
+import { setShowAddPost } from "@/lib/store";
 
-type AddPostProps = {
-  setShowAddPost: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const AddPost = ({ setShowAddPost }: AddPostProps) => {
+const AddPost = () => {
   const [content, setContent] = useState("");
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

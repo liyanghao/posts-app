@@ -4,13 +4,12 @@ import {
   PlusCircledIcon,
 } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
+import { $showAddPost, setShowAddPost } from "@/lib/store";
+import { useStore } from "@nanostores/react";
 
-type SidebarProps = {
-  showAddPost: boolean;
-  setShowAddPost: React.Dispatch<React.SetStateAction<boolean>>;
-};
+const Sidebar = () => {
+  const showAddPost = useStore($showAddPost);
 
-const Sidebar = ({ showAddPost, setShowAddPost }: SidebarProps) => {
   return (
     <div className="flex flex-col items-end p-2 space-y-2">
       <Button aria-label={"Home"} variant="ghost" size="icon">

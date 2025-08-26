@@ -1,17 +1,16 @@
 import AddPost from "./add-post";
 import Header from "./header";
 import Posts from "./posts";
+import { $showAddPost } from "@/lib/store";
+import { useStore } from "@nanostores/react";
 
-type FeedProps = {
-  showAddPost: boolean;
-  setShowAddPost: React.Dispatch<React.SetStateAction<boolean>>;
-};
+const Feed = () => {
+  const showAddPost = useStore($showAddPost);
 
-const Feed = ({ showAddPost, setShowAddPost }: FeedProps) => {
   return (
     <div className="flex flex-col w-full min-h-screen border-x">
       <Header />
-      {showAddPost && <AddPost setShowAddPost={setShowAddPost} />}
+      {showAddPost && <AddPost />}
       <Posts />
     </div>
   );
