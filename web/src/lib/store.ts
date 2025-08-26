@@ -26,7 +26,11 @@ export function updatePostContent(id: string, content: string) {
   );
 }
 
-export const $showAddPost = atom<boolean>(false);
+const $showAddPost = atom<boolean>(false);
+
+export function getShowAddPost() {
+  return $showAddPost.get();
+}
 
 export function setShowAddPost(showAddPost: boolean) {
   $showAddPost.set(showAddPost);
