@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import type { PostType } from "@/data/types";
 import Post from "./post";
 import { fetchPosts } from "@/data/api";
 
-const Posts = () => {
-  const [posts, setPosts] = useState<PostType[]>([]);
+type PostsActionsProps = {
+  posts: PostType[];
+  setPosts: React.Dispatch<React.SetStateAction<PostType[]>>;
+};
 
+const Posts = ({ posts, setPosts }: PostsActionsProps) => {
   useEffect(() => {
     fetchPosts().then((data) => setPosts(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
