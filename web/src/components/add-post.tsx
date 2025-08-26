@@ -7,9 +7,10 @@ import type { PostType } from "@/data/types";
 
 type AddPostProps = {
   setPosts: React.Dispatch<React.SetStateAction<PostType[]>>;
+  setShowAddPost: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const AddPost = ({ setPosts }: AddPostProps) => {
+const AddPost = ({ setPosts, setShowAddPost }: AddPostProps) => {
   const [content, setContent] = useState("");
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -22,11 +23,13 @@ const AddPost = ({ setPosts }: AddPostProps) => {
       const post = await createPost(content);
       setPosts((prevPosts) => [post, ...prevPosts]);
       setContent("");
+      setShowAddPost(false);
     }
   };
 
   const handleCancel = () => {
     setContent("");
+    setShowAddPost(false);
   };
 
   return (
