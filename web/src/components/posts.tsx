@@ -15,7 +15,7 @@ const Posts = () => {
       {posts
         .sort((a, b) => (a.date > b.date ? -1 : 1))
         .map((post) => (
-          <Post key={post.id} post={post} />
+          <Post key={post.id} post={post} setPosts={setPosts} />
         ))}
     </div>
   );
